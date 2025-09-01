@@ -1,17 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-09-01T10:08:17+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tarek Ziadé</title><subtitle>Notes on Building Sofware</subtitle><entry><title type="html">Hello World</title><link href="http://localhost:4000/2025/09/01/hello-world/" rel="alternate" type="text/html" title="Hello World" /><published>2025-09-01T00:00:00+02:00</published><updated>2025-09-01T00:00:00+02:00</updated><id>http://localhost:4000/2025/09/01/hello-world</id><content type="html" xml:base="http://localhost:4000/2025/09/01/hello-world/"><![CDATA[<p>Welcome to my new blog 🎉</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-09-01T10:52:51+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tarek Ziadé</title><subtitle>Notes on Building Sofware</subtitle><entry><title type="html">My Vision for AI and the Web</title><link href="http://localhost:4000/2025/09/01/vision-for-ai/" rel="alternate" type="text/html" title="My Vision for AI and the Web" /><published>2025-09-01T00:00:00+02:00</published><updated>2025-09-01T00:00:00+02:00</updated><id>http://localhost:4000/2025/09/01/vision-for-ai</id><content type="html" xml:base="http://localhost:4000/2025/09/01/vision-for-ai/"><![CDATA[<p>The way we use the web is shifting fast. Some people are still reluctant to
+embrace AI, but the reality in 2025 is that it is here to stay. The right
+response is not to reject it, but to make the best of it and shape it in ways
+that serve us. Search indices are fading, and chatbots are taking their place.
+Instead of browsing links, we are asking questions and getting answers directly.
+That is convenient, but it also moves control away from users and into the hands
+of a few AI providers.</p>
 
-<p>For years I have used Pelican to publish my blog, but I wanted to try something new
-and that did not require running my own server.</p>
+<h2 id="the-browsers-new-role">The Browser’s New Role</h2>
 
-<p>I’m now using <strong>Jekyll</strong> + <strong>GitHub Pages</strong> to publish posts.<br />
-This setup is lightweight, fast, and lets me write everything in plain Markdown.</p>
+<p>Browsers have always been the gateway to the web, but for a long time they have
+stayed neutral. Now, with AI changing how we find and use information, I believe
+the browser should become more active. That is why we have started adding local
+AI features in Firefox that respect privacy by design. For example, the PDF.js
+alt text generator and the Smart Tab feature both run on small models that we
+trained, which are downloaded to your device and executed locally. Your data
+never leaves your machine. This is the kind of approach that keeps people in
+control, instead of handing that control over to centralized platforms.</p>
 
-<p>Here’s what you can expect here:</p>
-<ul>
-  <li>Notes on programming and open source</li>
-  <li>Experiments with web technologies</li>
-  <li>Personal projects</li>
-  <li>Occasional posts about running, cycling, and marathons</li>
-</ul>
+<h2 id="the-hybrid-approach">The Hybrid Approach</h2>
 
-<p>Thanks for stopping by — more posts soon!</p>]]></content><author><name></name></author><category term="intro" /><category term="meta" /><summary type="html"><![CDATA[Welcome to my new blog 🎉]]></summary></entry></feed>
+<p>AI will not all run locally yet. Large models still need server-side power. But
+smaller, specialized models can run on your device today, privately and
+securely. That is the balance I believe in: local AI for lightweight,
+privacy-first features, and server AI only when the workload is too heavy. On
+top of that, privacy on the server side is improving quickly thanks to
+technologies like GPU enclaves, for example Nvidia’s Confidential Compute. As
+devices get stronger and these safeguards mature, more intelligence can shift
+back to the user’s side with stronger guarantees at every step.</p>
+
+<h2 id="the-future">The Future</h2>
+
+<p>The path forward is clear to me. We need to build powerful hybrid-based
+features, but always with deep care for security and privacy. That is how we
+make AI in the browser truly serve the people who use it.</p>]]></content><author><name>Tarek Ziade</name></author><category term="AI" /><category term="Web" /><category term="Firefox" /><category term="Privacy" /><category term="Browsers" /><summary type="html"><![CDATA[The way we use the web is shifting fast. Some people are still reluctant to embrace AI, but the reality in 2025 is that it is here to stay. The right response is not to reject it, but to make the best of it and shape it in ways that serve us. Search indices are fading, and chatbots are taking their place. Instead of browsing links, we are asking questions and getting answers directly. That is convenient, but it also moves control away from users and into the hands of a few AI providers.]]></summary></entry></feed>
