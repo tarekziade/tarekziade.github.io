@@ -36,11 +36,34 @@ technologies like GPU enclaves, for example Nvidia's Confidential Compute. As
 devices get stronger and these safeguards mature, more intelligence can shift
 back to the user’s side with stronger guarantees at every step.  
 
+
+## Open Questions
+
+There is still much to figure out. One of the biggest changes is that large
+language models are increasingly acting as intermediaries to the web itself.
+
+Instead of users directly searching, visiting sites, and making their own
+judgments, LLMs are fetching, ranking, and even rewriting information before
+presenting it back. 
+
+That raises difficult questions:
+
+- How do we ensure that users remain in control when the LLM is doing the search
+for them?
+
+- Can the browser provide visibility into what the model retrieved and why, so
+users are not left in the dark?
+
+- What role should open standards play to ensure transparency and user choice when
+AI providers add search capabilities directly into their platforms?
+
+These are open design questions that don’t have easy answers. But they are
+central to making sure AI serves people, rather than simply reshaping the web in
+ways that strip away agency.
+
 ## The Future
 
 The path forward is clear to me. We need to build powerful hybrid-based
 features, but always with deep care for security and privacy. That is how we
-make AI in the browser truly serve the people who use it.  
-
-
+make AI in the browser truly serve the people who use it.
 

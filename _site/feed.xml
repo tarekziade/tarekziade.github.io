@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-09-01T14:53:28+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tarek Ziadé</title><subtitle>Notes on Building Sofware</subtitle><entry><title type="html">Building the Model Behind PDF.js Alt Text</title><link href="http://localhost:4000/2025/09/01/first-machine-learning/" rel="alternate" type="text/html" title="Building the Model Behind PDF.js Alt Text" /><published>2025-09-01T00:00:00+02:00</published><updated>2025-09-01T00:00:00+02:00</updated><id>http://localhost:4000/2025/09/01/first-machine-learning</id><content type="html" xml:base="http://localhost:4000/2025/09/01/first-machine-learning/"><![CDATA[<p>This was the very first end-to-end machine learning project with modern LLMs
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-09-01T15:24:16+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tarek Ziadé</title><subtitle>Notes on Building Sofware</subtitle><entry><title type="html">Building the Model Behind PDF.js Alt Text</title><link href="http://localhost:4000/2025/09/01/first-machine-learning/" rel="alternate" type="text/html" title="Building the Model Behind PDF.js Alt Text" /><published>2025-09-01T00:00:00+02:00</published><updated>2025-09-01T00:00:00+02:00</updated><id>http://localhost:4000/2025/09/01/first-machine-learning</id><content type="html" xml:base="http://localhost:4000/2025/09/01/first-machine-learning/"><![CDATA[<p>This was the very first end-to-end machine learning project with modern LLMs
 in Firefox: building alt text generation our PDF.js viewer in Firefox. 
 It became the foundation for many of the AI features we are now bringing into the browser.</p>
 
@@ -135,6 +135,36 @@ top of that, privacy on the server side is improving quickly thanks to
 technologies like GPU enclaves, for example Nvidia’s Confidential Compute. As
 devices get stronger and these safeguards mature, more intelligence can shift
 back to the user’s side with stronger guarantees at every step.</p>
+
+<h2 id="open-questions">Open Questions</h2>
+
+<p>There is still much to figure out. One of the biggest changes is that large
+language models are increasingly acting as intermediaries to the web itself.</p>
+
+<p>Instead of users directly searching, visiting sites, and making their own
+judgments, LLMs are fetching, ranking, and even rewriting information before
+presenting it back.</p>
+
+<p>That raises difficult questions:</p>
+
+<ul>
+  <li>
+    <p>How do we ensure that users remain in control when the LLM is doing the search
+for them?</p>
+  </li>
+  <li>
+    <p>Can the browser provide visibility into what the model retrieved and why, so
+users are not left in the dark?</p>
+  </li>
+  <li>
+    <p>What role should open standards play to ensure transparency and user choice when
+AI providers add search capabilities directly into their platforms?</p>
+  </li>
+</ul>
+
+<p>These are open design questions that don’t have easy answers. But they are
+central to making sure AI serves people, rather than simply reshaping the web in
+ways that strip away agency.</p>
 
 <h2 id="the-future">The Future</h2>
 
