@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>
+  Building the Model Behind PDF.js Alt Text | Tarek Ziadé
+  
+</title>
+
+<meta name="description" content="Notes on Building Sofware">
+
+<link rel="stylesheet" href="/assets/css/custom.css">
+
+<!-- Favicon (optional, put in /assets/img/favicon.ico) -->
+<link rel="icon" href="/assets/img/favicon.ico">
+
+<!-- SEO & feed -->
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Building the Model Behind PDF.js Alt Text | Tarek Ziadé</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Building the Model Behind PDF.js Alt Text" />
+<meta name="author" content="Tarek Ziade" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This was the very first end-to-end machine learning project with modern LLMs in Firefox: building alt text generation our PDF.js viewer in Firefox. It became the foundation for many of the AI features we are now bringing into the browser." />
+<meta property="og:description" content="This was the very first end-to-end machine learning project with modern LLMs in Firefox: building alt text generation our PDF.js viewer in Firefox. It became the foundation for many of the AI features we are now bringing into the browser." />
+<link rel="canonical" href="http://localhost:4000/2025/09/01/first-machine-learning/" />
+<meta property="og:url" content="http://localhost:4000/2025/09/01/first-machine-learning/" />
+<meta property="og:site_name" content="Tarek Ziadé" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-09-01T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Building the Model Behind PDF.js Alt Text" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Tarek Ziade"},"dateModified":"2025-09-01T00:00:00+02:00","datePublished":"2025-09-01T00:00:00+02:00","description":"This was the very first end-to-end machine learning project with modern LLMs in Firefox: building alt text generation our PDF.js viewer in Firefox. It became the foundation for many of the AI features we are now bringing into the browser.","headline":"Building the Model Behind PDF.js Alt Text","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/09/01/first-machine-learning/"},"url":"http://localhost:4000/2025/09/01/first-machine-learning/"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Tarek Ziadé" />
+
+<!-- Extra head content (overridable per-page) -->
+
+
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Building the Model Behind PDF.js Alt Text | Tarek Ziadé</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Building the Model Behind PDF.js Alt Text" />
+<meta name="author" content="Tarek Ziade" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This was the very first end-to-end machine learning project with modern LLMs in Firefox: building alt text generation our PDF.js viewer in Firefox. It became the foundation for many of the AI features we are now bringing into the browser." />
+<meta property="og:description" content="This was the very first end-to-end machine learning project with modern LLMs in Firefox: building alt text generation our PDF.js viewer in Firefox. It became the foundation for many of the AI features we are now bringing into the browser." />
+<link rel="canonical" href="http://localhost:4000/2025/09/01/first-machine-learning/" />
+<meta property="og:url" content="http://localhost:4000/2025/09/01/first-machine-learning/" />
+<meta property="og:site_name" content="Tarek Ziadé" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-09-01T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Building the Model Behind PDF.js Alt Text" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Tarek Ziade"},"dateModified":"2025-09-01T00:00:00+02:00","datePublished":"2025-09-01T00:00:00+02:00","description":"This was the very first end-to-end machine learning project with modern LLMs in Firefox: building alt text generation our PDF.js viewer in Firefox. It became the foundation for many of the AI features we are now bringing into the browser.","headline":"Building the Model Behind PDF.js Alt Text","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2025/09/01/first-machine-learning/"},"url":"http://localhost:4000/2025/09/01/first-machine-learning/"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    <header class="site-header">
+  <div class="container">
+    <h1 class="site-title">
+      <a href="/">Tarek Ziadé</a>
+    </h1>
+
+    <nav class="site-nav">
+      <ul>
+        
+          
+            <li><a href="/">Blog</a></li>
+          
+            <li><a href="/projects/">Projects</a></li>
+          
+            <li><a href="/about/">About</a></li>
+          
+            <li><a href="/author/">Books</a></li>
+          
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <main class="container">
+      <article>
+  <h1>Building the Model Behind PDF.js Alt Text</h1>
+  <p><small>2025-09-01</small></p>
+  <p>This was the very first end-to-end machine learning project with modern LLMs
+in Firefox: building alt text generation our PDF.js viewer in Firefox. 
+It became the foundation for many of the AI features we are now bringing into the browser.</p>
+
+<p>In this post, I will not talk about the runtime inside Firefox, but instead
+focus on the model itself. I will share the journey step by step: from
+fine-tuning the model and addressing biased data, to building a validation app
+and a feedback loop that grew into a full pipeline for continuous improvement.</p>
+
+<h2 id="starting-from-an-existing-model">Starting from an Existing Model</h2>
+
+<p>I began with a pre-trained ViT + GPT-2 model—compact enough to run locally, yet
+effective for generating image descriptions. The reason I picked this model
+initially was because when we first started experimenting with AI in Firefox,
+transformers.js was the runtime we initialy chose. It came with an example project 
+for image-to-text that used a very similar architecture, so it was a natural
+starting point.</p>
+
+<p>My first idea was to make the model even smaller so it could run more easily in
+the browser. I swapped out the GPT-2 text decoder with a distilled version and
+then retrained it. For training, I used popular datasets like COCO and
+Flickr-30k, and at first the results looked promising. The model worked
+surprisingly well given its compact size.</p>
+
+<h2 id="wrestling-with-biased-data">Wrestling with Biased Data</h2>
+
+<p>But soon I hit some important limitations. The human annotations in those
+datasets often carried biases: gender stereotypes (“a man riding a
+skateboard” even when the subject was not clearly a man), or descriptions that
+leaned into cultural assumptions. In some cases, I even noticed fatphobic
+language creeping into the labels. On top of that, the smaller architecture
+meant the model sometimes produced clunky or imprecise captions.</p>
+
+<h2 id="rebuilding-better-data">Rebuilding Better Data</h2>
+
+<p>To address this, I focused on creating a cleaner dataset derived from COCO and
+Flickr-30k. I wanted to preserve the diversity of images but replace the biased
+human labels with synthetic, one-sentence descriptions generated by a large
+language model.</p>
+
+<p>At first, we experimented with doing this manually, but it quickly became clear
+that large models, when prompted carefully, could produce captions that were
+reliable, inexpensive, and incredibly fast to generate. The resulting
+annotations were shorter, more neutral, and far better suited for a smaller
+architecture. This new dataset helped reduce bias and improve accuracy, giving
+me a strong foundation for the next rounds of fine-tuning.</p>
+
+<h2 id="building-a-human-in-the-loop-app">Building a Human-in-the-Loop App</h2>
+
+<p>A major milestone was building a small app for humans to validate model
+output—and feed corrections back into retraining. In the app, users see the
+generated alt-text on many random images, make edits, and those corrections
+become new or corrected training examples. The validation workflow was simple
+but transformative: it automates dataset improvement, guiding each fine-tune
+round.</p>
+
+<p>This setup might sound similar to RLHF (Reinforcement Learning with Human
+Feedback), but it is not quite the same. RLHF uses human preferences to train
+a reward model that guides reinforcement learning. What I built is simpler: a
+human-in-the-loop supervised pipeline. People correct the outputs directly,
+and those corrections go straight into the next training dataset. It is less
+complex than RLHF but highly effective for improving the model in a practical
+way.</p>
+
+<h2 id="iterative-fine-tuning">Iterative Fine-Tuning</h2>
+
+<p>Armed with better data and validation feedback, I ran multiple rounds of
+fine-tuning. The improvements were obvious: the alt-text became more accurate,
+more neutral, and overall more useful. Still, I had to keep iterating to deal
+with class imbalance, the problem where some categories of images were
+overrepresented in the dataset, leading the model to favor them more than
+others. Balancing this was key to making the model more reliable across all
+kinds of content.</p>
+
+<h2 id="what-i-learned">What I Learned</h2>
+
+<ul>
+  <li><strong>Fine-tuning is just the start</strong>: the quality of training data matters more than model size.</li>
+  <li><strong>Bias creeps in quickly</strong>: annotation norms reflect cultural assumptions, and that affects models.</li>
+  <li><strong>Human feedback is gold</strong>: validating and correcting output closes the loop, improving the model with real-world input.</li>
+  <li><strong>Building the full pipeline is powerful</strong>: from fine-tune to validation to retrain, a full cycle lets me evolve the model with each iteration.</li>
+</ul>
+
+<h2 id="where-it-lives-now">Where It Lives Now</h2>
+
+<p>The outcome of this journey now lives in PDF.js. Firefox can generate alt-text
+for PDFs locally and privately, with the model running directly on-device so
+your data never leaves your machine. There is still room to grow: further
+fine-tuning, tackling class imbalance more systematically, and extending the
+system to multiple languages. But as a first complete end-to-end project, this
+was a strong foundation and a clear proof of what is possible.</p>
+
+<p>On a personal note, this project showed me how much of AI work is really about
+iteration, patience, and learning from mistakes. It was a reminder that the real
+progress comes not from one perfect model, but from building the right process
+to keep improving it.</p>
+
+<h2 id="useful-links">Useful links</h2>
+
+<ul>
+  <li><a href="https://huggingface.co/Mozilla/distilvit">Hugging Face: The trained model</a></li>
+  <li><a href="https://huggingface.co/datasets/Mozilla/flickr30k-transformed-captions-gpt4o">Hugging Face: The Flickr30 dataset with cleaner alt text</a></li>
+  <li><a href="https://github.com/mozilla/distilvit">GitHub: The code to train the model</a></li>
+  <li><a href="https://github.com/mozilla/checkvite">GitHub: The app to validate model output</a></li>
+  <li><a href="https://github.com/mozilla/pdf.js/">GitHub: The PDF.js project</a></li>
+  <li><a href="https://github.com/transformers-lab/transformers.js">transformers.js</a></li>
+  <li><a href="https://blog.mozilla.org/en/firefox/firefox-ai/help-us-improve-our-alt-text-generation-model">Mozilla Blog: Help us improve our alt-text generation model</a></li>
+  <li><a href="https://hacks.mozilla.org/2024/05/experimenting-with-local-alt-text-generation-in-firefox-nightly">Mozilla Hacks: experimenting with Local Alt-Text Generation in Firefox Nightly</a></li>
+</ul>
+
+
+   
+  <p class="post-tags">
+    <strong>Tags:</strong>
+    
+      <a class="tag" href="/tags/#ai">#AI</a>
+    
+      <a class="tag" href="/tags/#machine-learning">#Machine Learning</a>
+    
+      <a class="tag" href="/tags/#firefox">#Firefox</a>
+    
+      <a class="tag" href="/tags/#pdf-js">#PDF.js</a>
+    
+      <a class="tag" href="/tags/#accessibility">#Accessibility</a>
+    
+      <a class="tag" href="/tags/#local-ai">#Local AI</a>
+    
+  </p>
+  
+  <nav class="post-nav">
+    
+    <a style="float:right" href="/2025/09/01/vision-for-ai/">My Vision for AI and the Web →</a>
+  </nav>
+</article>
+
+    </main>
+    <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 Tarek Ziadé.
+       Powered by <a href="https://jekyllrb.com/">Jekyll</a> 
+       &amp; <a href="https://pages.github.com/">GitHub Pages</a>.
+
+    Some of the content may be generated by AI.
+
+    </p>
+  </div>
+</footer>
+
+
+  </body>
+</html>
