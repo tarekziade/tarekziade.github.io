@@ -1,0 +1,24 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>
+  {% if page.title %}{{ page.title }} | {{ site.title }}
+  {% else %}{{ site.title }}
+  {% endif %}
+</title>
+
+<meta name="description" content="{{ page.description | default: site.description }}">
+
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+
+<!-- Favicon (optional, put in /assets/img/favicon.ico) -->
+<link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
+
+<!-- SEO & feed -->
+{% seo %}
+{% feed_meta %}
+
+<!-- Extra head content (overridable per-page) -->
+{% if content_for_head %}
+  {{ content_for_head }}
+{% endif %}

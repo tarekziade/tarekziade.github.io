@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-09-01T10:08:17+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tarek Ziadé</title><subtitle>Notes on Building Sofware</subtitle><entry><title type="html">Hello World</title><link href="http://localhost:4000/2025/09/01/hello-world/" rel="alternate" type="text/html" title="Hello World" /><published>2025-09-01T00:00:00+02:00</published><updated>2025-09-01T00:00:00+02:00</updated><id>http://localhost:4000/2025/09/01/hello-world</id><content type="html" xml:base="http://localhost:4000/2025/09/01/hello-world/"><![CDATA[<p>Welcome to my new blog 🎉</p>
+
+<p>For years I have used Pelican to publish my blog, but I wanted to try something new
+and that did not require running my own server.</p>
+
+<p>I’m now using <strong>Jekyll</strong> + <strong>GitHub Pages</strong> to publish posts.<br />
+This setup is lightweight, fast, and lets me write everything in plain Markdown.</p>
+
+<p>Here’s what you can expect here:</p>
+<ul>
+  <li>Notes on programming and open source</li>
+  <li>Experiments with web technologies</li>
+  <li>Personal projects</li>
+  <li>Occasional posts about running, cycling, and marathons</li>
+</ul>
+
+<p>Thanks for stopping by — more posts soon!</p>]]></content><author><name></name></author><category term="intro" /><category term="meta" /><summary type="html"><![CDATA[Welcome to my new blog 🎉]]></summary></entry></feed>

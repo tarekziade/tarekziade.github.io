@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<article>
+  <h1>{{ page.title }}</h1>
+  <p><small>{{ page.date | date: "%Y-%m-%d" }}</small></p>
+  {{ content }}
+   {% if page.tags %}
+  <p class="post-tags">
+    <strong>Tags:</strong>
+    {% for tag in page.tags %}
+      <a class="tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">#{{ tag }}</a>{% unless forloop.last %}{% endunless %}
+    {% endfor %}
+  </p>
+  {% endif %}
+  <nav class="post-nav">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
+    {% if page.next %}<a style="float:right" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
+  </nav>
+</article>

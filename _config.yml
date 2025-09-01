@@ -1,3 +1,28 @@
-theme: jekyll-theme-minimal
-title: Tarek Ziadé
-description: Notes from building software
+# _config.yml
+title: "Tarek Ziadé"
+description: "Notes on Building Sofware"
+url: "https://tarekziade.github.io"
+baseurl: ""                       
+theme: minima                       # or use remote_theme below
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-gist
+
+paginate: 10
+paginate_path: "/page:num"
+
+permalink: /:categories/:year/:month/:day/:title/
+markdown: kramdown
+
+defaults:
+  - scope: {path: ""}              
+    values:
+      layout: "default"
+  - scope: {path: "", type: "posts"}
+    values:
+      layout: "post"
