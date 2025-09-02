@@ -26,6 +26,9 @@ A high-level overview of my last few years as a software developer.
   - Initiated the [WebExtension AI API](https://firefox-source-docs.mozilla.org/toolkit/components/ml/extensions.html) to expose AI-powered capabilities to extensions.  
   - Represent Mozilla in the **W3C Machine Learning Working Group**, collaborating with other browser vendors to shape web AI standards.  
 
+- **Cloud Inference**
+  - Designed and led the deployment of a **litellm-based service** for running inference in the cloud, complementing on-device inference and enabling scalable experimentation.
+
 
 Also, check out the Mozilla blog and Mozilla Hacks posts by me for some of the work I do there. I try to write in them on a regular basis:
 <ul>
