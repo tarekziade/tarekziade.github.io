@@ -17,7 +17,7 @@ A high-level overview of my last few years as a software developer.
   - Helped extend the runtime to support **native backends**: ONNX Runtime (C++) and Llama.cpp.  
 
 - **Team Building & Features**  
-  - Built and ramped up a team of ML engineers to create features powered by the runtime:
+  - Ramped up a team of ML engineers to create features powered by the runtime:
     - Smart tab grouping  
     - Search and suggest  
     - Link preview  
