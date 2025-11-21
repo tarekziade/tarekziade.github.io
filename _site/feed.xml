@@ -1,4 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-10-11T10:20:49+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tarek Ziadé</title><subtitle>Notes on Building Sofware</subtitle><entry><title type="html">The Real Danger of AI-Assisted Coding</title><link href="http://localhost:4000/2025/10/11/danger-of-ai-coding/" rel="alternate" type="text/html" title="The Real Danger of AI-Assisted Coding" /><published>2025-10-11T00:00:00+02:00</published><updated>2025-10-11T00:00:00+02:00</updated><id>http://localhost:4000/2025/10/11/danger-of-ai-coding</id><content type="html" xml:base="http://localhost:4000/2025/10/11/danger-of-ai-coding/"><![CDATA[<p><strong>TL;DR:</strong> You stop learning.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-11-21T10:30:23+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Tarek Ziadé</title><subtitle>Notes on Building Sofware</subtitle><entry><title type="html">WebNN is the future of browsers AI</title><link href="http://localhost:4000/2025/11/21/why-webnn-is-the-future-of-ai-in-browsers/" rel="alternate" type="text/html" title="WebNN is the future of browsers AI" /><published>2025-11-21T00:00:00+01:00</published><updated>2025-11-21T00:00:00+01:00</updated><id>http://localhost:4000/2025/11/21/why-webnn-is-the-future-of-ai-in-browsers</id><content type="html" xml:base="http://localhost:4000/2025/11/21/why-webnn-is-the-future-of-ai-in-browsers/"><![CDATA[<p>For years, running machine learning in the browser meant juggling GPU support,
+WASM fallbacks, and flags. WebNN changes that by giving the web a standard
+inference API between JavaScript and hardware. It is the missing piece that
+turns the browser into a first-class AI client runtime.</p>
+
+<p>Running AI locally is the long game. A decade from now laptops and phones will
+run much larger models natively, and the best experiences won’t require sending
+your data off to a cloud service. WebNN is how the web gets there.</p>
+
+<h2 id="what-webnn-really-is">What WebNN really is</h2>
+
+<p>WebNN is a W3C draft specification that exposes a graph-based neural network
+API to the web platform. Instead of binding directly to CUDA or Metal, browsers
+map WebNN calls to whatever native acceleration they have: DirectML on Windows,
+Core ML on macOS and iOS, NNAPI on Android, or a CPU path via TFLite/XNNPACK.
+When a CPU path exists, the browser can fall back there. Think of it as <code class="language-plaintext highlighter-rouge">canvas</code>
+for neural networks: you provide the graph, the browser picks the fastest safe
+backend.</p>
+
+<ul>
+  <li>Spec: <a href="https://www.w3.org/TR/webnn/">https://www.w3.org/TR/webnn/</a></li>
+  <li>Demos: <a href="https://webmachinelearning.github.io/webnn-samples-intro/">https://webmachinelearning.github.io/webnn-samples-intro/</a></li>
+</ul>
+
+<h3 id="webnn-as-a-graph-converter">WebNN as a graph converter</h3>
+
+<p>WebNN is a graph builder and validator. The browser takes the graph you define
+in JS, converts it into a static graph aimed at one of the underlying runtimes
+in the OS (DirectML, Core ML, NNAPI, TFLite/XNNPACK, or ONNX Runtime on newer
+Windows), and hands it to that native library. The heavy lifting lives there:
+compilation, scheduling, and kernel selection. WebNN is the portable contract
+that keeps your app code unchanged while the browser targets the best backend.</p>
+
+<p>In Chromium, WebNN uses DirectML by default on Windows and can use the
+OS-shipped ONNX Runtime backend on Windows 11 24H2+, falling back to DirectML
+otherwise.</p>
+
+<h3 id="why-not-just-use-webgpu">Why not “just use WebGPU”?</h3>
+
+<p>Libraries like ONNX Runtime Web and TF.js already use WebGPU to get more speed,
+but that means treating a graphics API as an inference runtime: writing shaders,
+managing bindings, and re-implementing scheduling. WebGPU is great for explicit
+control; WebNN is the spec we actually want for AI, with portable graphs,
+browser-managed backend choice, and no shader boilerplate.</p>
+
+<h2 id="why-this-matters">Why this matters</h2>
+
+<ul>
+  <li><strong>Performance without flags:</strong> WebNN can route to GPU, NPU, or CPU without
+developers writing backend-specific code. That means near-native throughput
+for models like Whisper Tiny or Segment Anything, but delivered via a web
+page.</li>
+  <li><strong>Predictable portability:</strong> The standard defines ops once; browsers own the
+mapping to the best hardware path they have. Apps no longer maintain separate
+WebGPU and WASM code paths.</li>
+  <li><strong>Battery-aware:</strong> Because browsers control the scheduling and backend choice,
+they can pick energy-efficient accelerators over brute-force GPU usage on
+laptops or mobile.</li>
+</ul>
+
+<h2 id="the-current-state-and-why-it-feels-real-now">The current state (and why it feels real now)</h2>
+
+<p>Chromium-based browsers ship WebNN behind a flag, and ONNX Runtime Web can
+use the WebNN execution provider when present. According to the public
+implementation status (<a href="https://webmachinelearning.github.io/webnn-status/">webmachinelearning.github.io/webnn-status</a>), the
+95 ops in the spec are now covered across Core ML, Windows ML/DirectML, the
+WebNN execution provider for ONNX Runtime, and TFLite/XNNPACK (LiteRT) with
+only a handful still in flight. That’s enough to make real apps: speech commands,
+lightweight summarization, image segmentation, and style transfer.</p>
+
+<p>The momentum is similar to what we saw with WebGPU two years ago: early adopters
+can ship progressive enhancements now, and the API will solidify while hardware
+vendors line up their drivers.</p>
+
+<p>The big shift is that WebNN moves backend selection into the browser while
+keeping a high-level graph API. It is closer to Core ML or DirectML than to raw
+GPU programming.</p>
+
+<h2 id="why-i-am-bullish">Why I am bullish</h2>
+
+<p>The web wins by being portable and low friction. AI has been the missing
+capability that pushed teams toward native wrappers or cloud-heavy designs.
+WebNN gives us a standard, permissionless way to run meaningful AI locally in
+the browser while respecting energy and privacy constraints. It unlocks the
+boring path to mass adoption: no installs, instant upgrades, and enough
+abstraction that developers can stay focused on UX rather than driver matrices.</p>
+
+<p>Now is the time to experiment, measure, and ship progressive AI features. The
+future of AI in browsers looks like WebNN.</p>]]></content><author><name>Tarek Ziade</name></author><category term="AI" /><category term="WebNN" /><category term="Browsers" /><summary type="html"><![CDATA[For years, running machine learning in the browser meant juggling GPU support, WASM fallbacks, and flags. WebNN changes that by giving the web a standard inference API between JavaScript and hardware. It is the missing piece that turns the browser into a first-class AI client runtime.]]></summary></entry><entry><title type="html">The Real Danger of AI-Assisted Coding</title><link href="http://localhost:4000/2025/10/11/danger-of-ai-coding/" rel="alternate" type="text/html" title="The Real Danger of AI-Assisted Coding" /><published>2025-10-11T00:00:00+02:00</published><updated>2025-10-11T00:00:00+02:00</updated><id>http://localhost:4000/2025/10/11/danger-of-ai-coding</id><content type="html" xml:base="http://localhost:4000/2025/10/11/danger-of-ai-coding/"><![CDATA[<p><strong>TL;DR:</strong> You stop learning.</p>
 
 <p>Lately, I’ve been conducting engineering interviews—ranging from junior to
 senior levels—and I’ve noticed a worrying trend: the ability to write good code
