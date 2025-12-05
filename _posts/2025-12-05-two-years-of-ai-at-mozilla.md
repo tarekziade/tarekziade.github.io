@@ -7,7 +7,7 @@ tags: [AI, Firefox, Machine Learning, Privacy]
 ---
 
 When I started working on AI at Mozilla two years ago, I was a Python developer
-with a background in web services and six months of machine learning experience
+with a background in web services and three months of machine learning experience
 from working on the Nuclia DB project. I was not someone who had trained models
 from scratch or built production ML infrastructure. Today, Firefox ships
 multiple AI features that run entirely on-device, and I helped build the
