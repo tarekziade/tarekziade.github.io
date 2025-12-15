@@ -177,33 +177,21 @@ The long-term goal remains unchanged: provide high-quality, privacy-preserving a
 # References and Resources
 
 ## Background
-- Experimenting with local alt text generation in Firefox Nightly  
-  https://hacks.mozilla.org/2024/05/experimenting-with-local-alt-text-generation-in-firefox-nightly/
-- Help us improve our alt text generation model  
-  https://blog.mozilla.org/en/firefox/firefox-ai/help-us-improve-our-alt-text-generation-model/
+- [Experimenting with local alt text generation in Firefox Nightly](https://hacks.mozilla.org/2024/05/experimenting-with-local-alt-text-generation-in-firefox-nightly/)
+- [Help us improve our alt text generation model](https://blog.mozilla.org/en/firefox/firefox-ai/help-us-improve-our-alt-text-generation-model/)
 
 ## Datasets
-- Flickr30k Entities Dataset  
-  http://web.engr.illinois.edu/~bplumme2/Flickr30kEntities/
-- COCO Dataset  
-  https://cocodataset.org/
-- Mozilla Flickr30k transformed captions (GPT-4o)  
-  https://huggingface.co/datasets/Mozilla/flickr30k-transformed-captions-gpt4o
+- [Flickr30k Entities Dataset](http://web.engr.illinois.edu/~bplumme2/Flickr30kEntities/)
+- [COCO Dataset](https://cocodataset.org/)
+- [Mozilla Flickr30k transformed captions (GPT-4o)](https://huggingface.co/datasets/Mozilla/flickr30k-transformed-captions-gpt4o)
 
 ## Metrics
-- CLIP: Learning Transferable Visual Models From Natural Language Supervision  
-  https://arxiv.org/abs/2103.00020
-- BERTScore: Evaluating Text Generation with BERT  
-  https://arxiv.org/abs/1904.09675
-- Gini coefficient  
-  https://en.wikipedia.org/wiki/Gini_coefficient
-- Shannon entropy  
-  https://en.wikipedia.org/wiki/Entropy_(information_theory)
+- [CLIP: Learning Transferable Visual Models From Natural Language Supervision](https://arxiv.org/abs/2103.00020)
+- [BERTScore: Evaluating Text Generation with BERT](https://arxiv.org/abs/1904.09675)
+- [Gini coefficient](https://en.wikipedia.org/wiki/Gini_coefficient)
+- [Shannon entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory))
 
 ## Code
-- Project repository  
-  https://github.com/tarekziade/distilvit2
-- Dataset quality documentation  
-  https://github.com/tarekziade/distilvit2/blob/main/docs/dataset_quality.md
-- Quality analysis tool  
-  https://github.com/tarekziade/distilvit2/blob/main/distilvit/dataset_quality_report.py
+- [Project repository](https://github.com/tarekziade/distilvit2)
+- [Dataset quality documentation](https://github.com/tarekziade/distilvit2/blob/main/docs/dataset_quality.md)
+- [Quality analysis tool](https://github.com/tarekziade/distilvit2/blob/main/distilvit/dataset_quality_report.py)
