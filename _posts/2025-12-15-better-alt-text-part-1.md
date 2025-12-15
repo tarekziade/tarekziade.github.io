@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "All I Want is a Better Alt Text for Christmas – Part 1"
+title: "All I Want for Christmas is a Better Alt Text – Part 1"
 date: 2025-12-15
 author: "Tarek Ziade"
 tags: [AI, Machine Learning, Image Captioning, Dataset Quality, Bias Detection, CLIP, BERT, Mozilla, Accessibility]
