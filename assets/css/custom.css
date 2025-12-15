@@ -203,3 +203,17 @@ article small {
   }
 }
 
+/* Code block spacing */
+.highlight {
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 6px;
+}
+
+/* Ensure scrolling works nicely */
+.highlight pre {
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+}
+

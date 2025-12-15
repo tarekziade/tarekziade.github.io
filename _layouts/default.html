@@ -3,6 +3,46 @@
   <head>
     {% include head.html %}
     {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/rouge.css' | relative_url }}">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+  // 1) Find fenced mermaid code blocks produced by the Markdown renderer
+  const codeBlocks = document.querySelectorAll('code.language-mermaid, code.lang-mermaid');
+
+  codeBlocks.forEach(code => {
+    const pre = code.closest('pre');
+    if (!pre) return;
+
+    // 2) Create the mermaid container and copy plain text (use textContent to avoid HTML-escaped entities)
+    const mermaidDiv = document.createElement('div');
+    mermaidDiv.className = 'mermaid';
+    mermaidDiv.textContent = code.textContent.trim();
+
+    // 3) Replace the <pre> with the mermaid <div>
+    pre.parentNode.replaceChild(mermaidDiv, pre);
+  });
+
+  // 4) Initialize mermaid on the new .mermaid nodes
+  // Use startOnLoad:false to avoid double-init if mermaid already set startOnLoad:true
+  try {
+    mermaid.initialize({ startOnLoad: false });
+    // mermaid.init may differ slightly across versions; mermaid.run()/mermaid.init both exist in different versions.
+    // Prefer mermaid.init if available, otherwise fallback to mermaid.run()
+    if (typeof mermaid.init === 'function') {
+      mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    } else if (typeof mermaid.run === 'function') {
+      mermaid.run();
+    } else if (typeof mermaid.parse === 'function') {
+      // last resort: try contentLoaded helper
+      mermaid.contentLoaded?.();
+    }
+  } catch (err) {
+    console.error('Mermaid initialization failed:', err);
+  }
+});
+
+    </script>
   </head>
   <body>
     {% include header.html %}
