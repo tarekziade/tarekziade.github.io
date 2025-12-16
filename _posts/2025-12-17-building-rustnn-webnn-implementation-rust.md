@@ -1,7 +1,7 @@
 ---
 layout: post
 title: rustnn - a Python and Rust Implementation of W3C WebNN aimed at Firefox
-date: 2025-12-16
+date: 2025-12-17
 author: "Tarek Ziade"
 tags: [WebNN, Rust, Firefox, AI, Machine Learning]
 ---
