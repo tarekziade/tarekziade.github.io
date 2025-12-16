@@ -6,3 +6,5 @@
   url: /about/
 - title: Books
   url: /author/
+- title: RSS
+  url: /feed.xml
