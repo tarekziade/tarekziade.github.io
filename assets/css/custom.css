@@ -13,10 +13,14 @@ body {
 a {
   color: #0366d6;
   text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 a:hover {
-  text-decoration: underline;
+  transform: scale(1.05) rotate(1deg);
+  color: #024d9c;
 }
 
 .container {
@@ -215,5 +219,61 @@ article small {
   margin: 0;
   padding: 0;
   overflow-x: auto;
+}
+
+/* -----------------------------
+   Recent posts styling
+------------------------------ */
+.recent-posts {
+  padding-left: 0;
+  list-style: none;
+}
+
+.home-nav {
+  font-size: 0.85rem;
+  padding-top: 1.5rem;
+  color: #777;
+}
+
+.recent-posts li {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.post-date {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* -----------------------------
+   Site title letter animation
+------------------------------ */
+.site-title a {
+  display: inline-block;
+}
+
+.site-title-letter {
+  display: inline-block;
+  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+  cursor: default;
+}
+
+.site-title-letter:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: #0366d6;
+}
+
+@keyframes vibrate {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-1px, -1px) rotate(-1deg); }
+  50% { transform: translate(1px, 1px) rotate(1deg); }
+  75% { transform: translate(-1px, 1px) rotate(-1deg); }
+}
+
+.site-title-letter.vibrating {
+  animation: vibrate 0.8s ease-in-out;
 }
 

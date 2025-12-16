@@ -14,20 +14,17 @@ title: Home
 </ul>
 
 <h2>Recent posts</h2>
-<ul>
+<ul class="recent-posts">
   {% assign recent = site.posts | slice: 0, 5 %}
   {% for post in recent %}
     <li>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      <small> — {{ post.date | date: "%Y-%m-%d" }}</small>
-      {% if post.excerpt %}
-        <div><small>{{ post.excerpt | strip_html | truncate: 140 }}</small></div>
-      {% endif %}
+      <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
     </li>
   {% endfor %}
 </ul>
 
-<p>
+<p class="home-nav">
   <a href="{{ '/blog/' | relative_url }}">All posts</a> ·
   <a href="{{ '/tags/' | relative_url }}">Tags</a> ·
   <a href="{{ '/about/' | relative_url }}">About</a>
