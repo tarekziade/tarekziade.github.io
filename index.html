@@ -3,17 +3,10 @@ layout: page
 title: Home
 ---
 
-<p>Hi, I’m {{ site.title }}. This is my personal site where I share notes, experiments, and posts.</p>
+<h1 style="bigger">Hi, I’m {{ site.title }}.</h1> 
 
-<p>I also blog in the Mozilla Blogs about my work:</p> 
+<p>This is my personal site where I share notes, experiments, and posts.</p>
 
-
-<ul>
-  <li><a href="https://blog.mozilla.org/en/author/tziademozilla-com/">Mozilla Blog</a></li>
-  <li><a href="https://hacks.mozilla.org/author/tziademozilla-com">Mozilla Hacks</a></li>
-</ul>
-
-<h2>Recent posts</h2>
 <ul class="recent-posts">
   {% assign recent = site.posts | slice: 0, 5 %}
   {% for post in recent %}
@@ -25,9 +18,9 @@ title: Home
 </ul>
 
 <p class="home-nav">
-  <a href="{{ '/blog/' | relative_url }}">All posts</a> ·
-  <a href="{{ '/tags/' | relative_url }}">Tags</a> ·
-  <a href="{{ '/about/' | relative_url }}">About</a>
+  <a href="{{ '/tags/' | relative_url }}">Posts per tags</a> ·
+  <a href="https://blog.mozilla.org/en/author/tziademozilla-com/">Mozilla Blog</a> ·
+  <a href="https://hacks.mozilla.org/author/tziademozilla-com">Mozilla Hacks</a>
 </p>
 
 
