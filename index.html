@@ -8,7 +8,7 @@ title: Home
 <p>This is my personal site where I share notes, experiments, and posts.</p>
 
 <ul class="recent-posts">
-  {% assign recent = site.posts | slice: 0, 5 %}
+  {% assign recent = site.posts | slice: 0, 8 %}
   {% for post in recent %}
     <li>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
