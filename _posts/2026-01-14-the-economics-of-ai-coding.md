@@ -114,7 +114,7 @@ Let me restate those numbers because they still feel surreal:
 
 For this type of task, these are order-of-magnitude improvements over solo human execution. And they weren't achieved through cutting corners or sacrificing immediate quality. The tests passed, the documentation was comprehensive, the commits were well-structured, the code compiled cleanly.
 
-That said, tests passing and documentation existing are necessary but not sufficient signals of quality. Long-term maintainability, latent bugs that only surface later, or future refactoring friction are harder to measure immediately. The code is in production and working, but it's too soon to know if there are subtle issues that will emerge over time.
+That said, tests passing and documentation existing are necessary but not sufficient signals of quality. Long-term maintainability, latent bugs that only surface later, or future refactoring friction are harder to measure immediately. The code is working, but it's too soon to know if there are subtle issues that will emerge over time.
 
 This creates strange economics for a specific class of work: systematic, pattern-based refactoring with clear success criteria. For these tasks, the time and cost reductions change how we value engineering effort and prioritize maintenance work.
 
