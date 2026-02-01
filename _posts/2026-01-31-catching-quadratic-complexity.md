@@ -297,7 +297,7 @@ that job.
 
 I wrote up the full comparison here:
 
-- [LoopSleuth vs Linters Comparison](https://github.com/tarekziade/loopsleuth/blob/main/COMPARISON.md)
+- [LoopSleuth vs Linters Comparison](https://github.com/tarekziade/loopsleuth/blob/main/docs/COMPARISON.md)
 
 To be clear, there may be ways to approximate some of these checks with custom
 rules or plugins, and linters remain the first line of defense for code quality.
